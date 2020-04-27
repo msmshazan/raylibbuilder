@@ -22,12 +22,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
     - name: Fetch Raylib 
       run: |
         mkdir raylib
         cd raylib
-        git fetch https://github.com/raysan5/raylib.git
+        git fetch https://github.com/raysan5/raylib.git .
         git checkout e65d15f6ad6f9ade05999b66fdd91d3f6eb2a2d0
         
     - name: Generate and Build Raylib Solution 
