@@ -27,3 +27,14 @@ jobs:
       run: |
         git fetch https://github.com/raysan5/raylib.git
         git checkout e65d15f6ad6f9ade05999b66fdd91d3f6eb2a2d0
+        
+    - name: Generate and Build Raylib Solution 
+      run: |
+        .\setupshell.ps1
+        cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
+        &devenv .\bin\Project.sln /Build "RelWithDebInfo|x64"
+        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\x64
+        cmake -G  "Visual Studio 16 2019" -A Win32 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
+        &devenv .\bin\Project.sln /Build "RelWithDebInfo|Win32"
+        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\Win32
+        
