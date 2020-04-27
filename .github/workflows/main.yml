@@ -26,7 +26,7 @@ jobs:
       run: |
         mkdir raylib
         cd raylib
-        git fetch https://github.com/raysan5/raylib.git .
+        git clone https://github.com/raysan5/raylib.git .
         git checkout e65d15f6ad6f9ade05999b66fdd91d3f6eb2a2d0
         
     - name: Generate and Build Raylib Solution 
