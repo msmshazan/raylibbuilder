@@ -30,12 +30,9 @@ jobs:
         git clone https://github.com/raysan5/raylib.git .
         git checkout e65d15f6ad6f9ade05999b66fdd91d3f6eb2a2d0
         
-    - name: Setup Environment
-      run: |
-        .\setupshell.ps1
-            
     - name: Generate and Build Raylib Solution 
       run: |
+        .\setupshell.ps1
         &dir
         cd raylib
         cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
