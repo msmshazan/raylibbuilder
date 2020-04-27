@@ -30,6 +30,7 @@ jobs:
         
     - name: Generate and Build Raylib Solution 
       run: |
+        &dir
         .\setupshell.ps1
         cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|x64"
