@@ -34,6 +34,10 @@ jobs:
       run: |
         .\setupshell.ps1
         mkdir Binaries
+        cd Binaries
+        mkdir x64
+        mkdir x86
+        cd ..
         cd raylib
         cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|x64"
