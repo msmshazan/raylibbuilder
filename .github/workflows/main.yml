@@ -42,8 +42,8 @@ jobs:
         cmake -G  "Visual Studio 16 2019" -A Win32 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|Win32"
         Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\x86
-        cd ..
         Move-Item -Path .\src\*.h -Destination ..\Binaries\include
+        cd ..
         &dir
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
