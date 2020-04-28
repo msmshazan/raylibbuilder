@@ -42,11 +42,11 @@ jobs:
         cd raylib
         cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|x64"
-        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\x64
+        Move-Item -Path .\bin\src\RelWithDebInfo\* -Destination ..\Binaries\x64
         Remove-Item -Path .\bin -Force -Recurse
         cmake -G  "Visual Studio 16 2019" -A Win32 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|Win32"
-        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\x86
+        Move-Item -Path .\bin\src\RelWithDebInfo\* -Destination ..\Binaries\x86
         Move-Item -Path .\src\*.h -Destination ..\Binaries\include
         cd ..
         &dir
