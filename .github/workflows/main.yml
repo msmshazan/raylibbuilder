@@ -33,14 +33,21 @@ jobs:
     - name: Generate and Build Raylib Solution 
       run: |
         .\setupshell.ps1
+        mkdir Binaries
         cd raylib
         cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|x64"
-        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries_x64
+        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\x64
         Remove-Item -Path .\bin -Force -Recurse
         cmake -G  "Visual Studio 16 2019" -A Win32 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
         &devenv .\bin\Project.sln /Build "RelWithDebInfo|Win32"
-        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries_x86
+        Move-Item -Path .\bin\src\RelWithDebInfo\ -Destination ..\Binaries\x86
         cd ..
+        Move-Item -Path .\src\*.h -Destination ..\Binaries\include
         &dir
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: Release
+        path: Binaries
         
