@@ -37,6 +37,7 @@ jobs:
         cd Binaries
         mkdir x64
         mkdir x86
+        mkdir include
         cd ..
         cd raylib
         cmake -G  "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=ON -S . -B bin
